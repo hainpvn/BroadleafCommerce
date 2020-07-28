@@ -493,6 +493,8 @@ public class AdminBasicEntityController extends AdminAbstractController {
         ClassMetadata cmd = service.getClassMetadata(ppr).getDynamicResultSet().getClassMetaData();
         Entity entity = service.getRecord(ppr, id, cmd, false).getDynamicResultSet().getRecords()[0];
 
+        multipleCatalogExtensionManager.getProxy().setCurrentCatalog(entity, model);
+
         Map<String, DynamicResultSet> subRecordsMap = getViewSubRecords(request, pathVars, cmd, entity, crumbs);
 
         EntityForm entityForm = formService.createEntityForm(cmd, entity, subRecordsMap, crumbs);
@@ -1227,7 +1229,7 @@ public class AdminBasicEntityController extends AdminAbstractController {
         Entity entity = service.getRecord(ppr, id, mainMetadata, false).getDynamicResultSet().getRecords()[0];
         service.clearEntityManager();
 
-        multipleCatalogExtensionManager.getProxy().setCurrentCatalog(entity);
+//        multipleCatalogExtensionManager.getProxy().setCurrentCatalog(entity);
 
         // First, we must save the collection entity
         PersistenceResponse persistenceResponse = service.addSubCollectionEntity(entityForm, mainMetadata, collectionProperty, entity, sectionCrumbs);

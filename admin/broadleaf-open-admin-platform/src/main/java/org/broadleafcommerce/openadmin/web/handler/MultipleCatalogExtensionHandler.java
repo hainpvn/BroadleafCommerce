@@ -18,8 +18,9 @@
 package org.broadleafcommerce.openadmin.web.handler;
 import org.broadleafcommerce.common.extension.ExtensionHandler;
 import org.broadleafcommerce.openadmin.dto.Entity;
+import org.springframework.ui.Model;
 
 public interface MultipleCatalogExtensionHandler extends ExtensionHandler {
 
-    void setCurrentCatalog(Entity entity);
+    void setCurrentCatalog(Entity entity, Model model);
 }
